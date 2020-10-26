@@ -7,20 +7,20 @@ import { Task } from '../../api';
   styleUrls: ['./tasks.component.scss']
 })
 export class TasksComponent implements OnInit {
-  tasks: any;
+  tasks = [];
+  test: string;
 
   constructor(private taskAPI: Task) {}
 
   getTasks() {
-    this.taskAPI.query().subscribe((data:any) => {
-      this.tasks = data;
-      console.log(this.tasks);
+    this.taskAPI.query().subscribe(this.onGetTasksSuccess)
+  }
 
-    })
+  onGetTasksSuccess = (data) => {
+    this.tasks = data;
   }
 
   ngOnInit(): void {
     this.getTasks();
   }
-
 }
