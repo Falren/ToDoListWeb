@@ -5,6 +5,7 @@ import { environment } from '../environments/environment';
 @Injectable()
 export class Task {
   constructor(private http: HttpClient) {}
+
   query() {
     return this.http.get(`${environment.apiEndpoint}/api/v1/tasks`);
   }
