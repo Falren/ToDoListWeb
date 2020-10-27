@@ -1,15 +1,9 @@
+<app-task-form (onCreateTask)="onCreateTask($event)"></app-task-form>
 <div class='col-lg-6'>
-    <h1>TaskMaster</h1>
-    <div class="list-group">
-        <div *ngFor="let task of tasks" class="list-group-item">
-            <div> Task id: {{ task.id }} </div>
-            <div> Title: {{ task.title }} </div>
-            <div> Description: {{ task.description }} </div>
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <a class="btn btn-primary btn-lg" href="#" role="button">Edit </a>
-                <a class="btn btn-success btn-lg" href="#" role="button">Mark as done</a>
-                <a class="btn btn-danger btn-lg" href="#" role="button">Delete</a>
-            </div>
-        </div>
-    </div>
+  <h1>TaskMaster</h1>
+  <div class="list-group">
+      <div *ngFor="let task of tasks" class="list-group-item">
+        <app-task [task]="task"></app-task>
+      </div>
+  </div>
 </div>

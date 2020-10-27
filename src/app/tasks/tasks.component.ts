@@ -1,16 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../../api';
 
+
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.scss']
 })
 export class TasksComponent implements OnInit {
+  
+  
   tasks = [];
-  test: any;
-  constructor(private taskAPI: Task) {}
+  
+  constructor(private taskAPI: Task) {
+  }
 
+  ngOnInit(): void {
+    this.getTasks();
+  }
+  
   getTasks() {
     this.taskAPI.query().subscribe(this.onGetTasksSuccess)
   }
@@ -19,7 +27,7 @@ export class TasksComponent implements OnInit {
     this.tasks = data;
   }
 
-  ngOnInit(): void {
-    this.getTasks();
-  }
+  onCreateTask($event) {
+    this.tasks.unshift($event)
+  } 
 }
