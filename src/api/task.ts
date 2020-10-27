@@ -17,7 +17,7 @@ export class Task {
   update(params) {
     return this.http.put(`${environment.apiEndpoint}/api/v1/tasks`, params);
   }
-  delete() {
-    return this.http.delete(`${environment.apiEndpoint}/api/v1/tasks`);
+  delete(params) {
+    return this.http.delete(`${environment.apiEndpoint}/api/v1/tasks`, params);
   }
 }
