@@ -8,7 +8,6 @@ import { Task } from '../../api';
 })
 export class TasksComponent implements OnInit {
   tasks = [];
-  test: string;
 
   constructor(private taskAPI: Task) {}
 
