@@ -10,8 +10,9 @@ import { Task } from '../../api';
 export class TaskFormComponent implements OnInit {
 
   @Output() onCreateTask = new EventEmitter<any>();
-
+  
   taskForm: FormGroup;
+  
   constructor(private fb: FormBuilder, private taskAPI: Task) { }
 
   ngOnInit(): void {
