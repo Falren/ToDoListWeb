@@ -3,7 +3,7 @@
   <h1>TaskMaster</h1>
   <div class="list-group">
       <div *ngFor="let task of tasks" class="list-group-item">
-        <app-task [task]="task"></app-task>
+        <app-task [task]="task" (onDeleteTask)="onDeleteTask()"></app-task>
       </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Task } from '../../api';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-task-form',
   templateUrl: './task-form.component.html',
@@ -13,7 +13,7 @@ export class TaskFormComponent implements OnInit {
   
   taskForm: FormGroup;
   
-  constructor(private fb: FormBuilder, private taskAPI: Task) { }
+  constructor(private fb: FormBuilder, private taskAPI: Task, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.taskForm = this.fb.group({
@@ -26,6 +26,7 @@ export class TaskFormComponent implements OnInit {
     this.taskAPI.create(this.taskForm.value).subscribe((data)=> {
       this.onCreateTask.emit(data);
       this.taskForm.reset();
+      this.toastr.success('Task has been successfully created', 'Success!', { closeButton: true });
     })
   }
 }

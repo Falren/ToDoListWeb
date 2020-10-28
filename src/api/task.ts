@@ -18,6 +18,6 @@ export class Task {
     return this.http.put(`${environment.apiEndpoint}/api/v1/tasks`, params);
   }
   delete(params) {
-    return this.http.delete(`${environment.apiEndpoint}/api/v1/tasks`, params);
+    return this.http.delete(`${environment.apiEndpoint}/api/v1/tasks/${params}`);
   }
 }
