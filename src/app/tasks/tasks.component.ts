@@ -19,11 +19,15 @@ export class TasksComponent implements OnInit {
   }
   
   getTasks() {
-    this.taskAPI.query().subscribe(this.onGetTasksSuccess)
+    this.taskAPI.query().subscribe(this.onGetTasksSuccess);
   }
 
   onGetTasksSuccess = (data) => {
     this.tasks = data;
+  }
+
+  onDeleteTask() {
+    this.tasks.shift();
   }
 
   onCreateTask($event) {
