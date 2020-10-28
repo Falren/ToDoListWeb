@@ -1,5 +1,6 @@
-<app-task-form (onCreateTask)="onCreateTask($event)"></app-task-form>
 <div class='col-lg-6'>
+  <h1>Add Task</h1>
+  <app-task-form (onCreateTask)="onCreateTask($event);"></app-task-form>
   <h1>TaskMaster</h1>
   <div class="list-group">
       <div *ngFor="let task of tasks" class="list-group-item">
