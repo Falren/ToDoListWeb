@@ -1,9 +1,17 @@
-<div> Task id: {{ task.id }} </div>
-<div> Title: {{ task.title }} </div>
-<div> Description: {{ task.description }} </div>
-<div class="btn-group" role="group" aria-label="Basic example">
-  <a class="btn btn-primary btn-lg" href="#" role="button">Edit </a>
-  <a class="btn btn-success btn-lg" href="#" role="button">Mark as done</a>
-  <a class="btn btn-danger btn-lg" (click)="deleteTask(task.id);">Delete</a>
+<div class='col-lg-6'>
+  <div *ngIf="!showEdit">
+    <div> Task id: {{ task.id }} </div>
+    <div> Title: {{ task.title }} </div>
+    <div> Description: {{ task.description }} </div>
+    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+      <a class="btn btn-primary btn-sm" (click)="toggleTag();">Edit </a>
+      <a class="btn btn-success btn-sl" href="#" role="button">Mark as done</a>
+      <a class="btn btn-danger btn-sl" (click)="deleteTask(task.id);">Delete</a>
+    </div>
+  </div>
+  <div *ngIf="showEdit">
+    <h1>Update Task</h1>
+    <app-task-form [task]="task" (onUpdateTask)="onUpdateTask();"></app-task-form>
+  </div>
 </div>
 

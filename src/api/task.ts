@@ -10,12 +10,12 @@ export class Task {
     return this.http.get(`${environment.apiEndpoint}/api/v1/tasks`);
   }
 
-  create(params) {
+  create(params?) {
     return this.http.post(`${environment.apiEndpoint}/api/v1/tasks`, params);
   }
 
-  update(params) {
-    return this.http.put(`${environment.apiEndpoint}/api/v1/tasks`, params);
+  update(id?, params?) {
+    return this.http.put(`${environment.apiEndpoint}/api/v1/tasks/${id}`, params);
   }
   delete(id) {
     return this.http.delete(`${environment.apiEndpoint}/api/v1/tasks/${id}`);
