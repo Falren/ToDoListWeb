@@ -12,6 +12,7 @@ import { TaskComponent } from './task/task.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { ToastrModule } from 'ngx-toastr';
+import { TaskInfoComponent } from './task-info/task-info.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ToastrModule } from 'ngx-toastr';
     TasksComponent,
     TaskFormComponent,
     TaskComponent,
+    TaskInfoComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,13 +1,14 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Task } from '../../api';
 import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.scss']
 })
 export class TaskComponent  {
-  @Input() task: any;
+  @Input() task: any = {};
   @Output() onDeleteTask = new EventEmitter<any>();
   
   showEdit:boolean=false;
