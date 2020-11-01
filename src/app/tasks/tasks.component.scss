@@ -1,0 +1,24 @@
+.container-fluid {
+  background-color: transparent;
+  background-color: #252525; 
+  padding-top: 30px;
+  padding-bottom: 20px;
+  height: 100vw;
+}
+
+.container-fluid > .row {
+  justify-content: center;
+}
+
+.container-lg {
+  border-radius: 2px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.current-tasks-headers {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+h1 {color: gainsboro;}
