@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Task } from '../../api';
 import { ToastrService } from 'ngx-toastr';
@@ -8,15 +8,13 @@ import { Router } from '@angular/router';
   templateUrl: './task-form.component.html',
   styleUrls: ['./task-form.component.scss']
 })
-export class TaskFormComponent implements OnInit {
+export class TaskFormComponent {
   @Input() task: any = {};
   @Output() onCreateTask = new EventEmitter<any>();
   @Output() onUpdateTask = new EventEmitter<any>();
   taskForm: FormGroup;
   
-  constructor(private fb: FormBuilder, private taskAPI: Task, private toastr: ToastrService, private router: Router) { }
-
-  ngOnInit(): void {
+  constructor(private fb: FormBuilder, private taskAPI: Task, private toastr: ToastrService, private router: Router) { 
     this.taskForm = this.fb.group({
       title: [this.task.title || '', Validators.required],
       description: [this.task.description || '', Validators.required]
@@ -26,6 +24,7 @@ export class TaskFormComponent implements OnInit {
   onSubmit() {
     let params = this.task.id ? [this.task.id, this.taskForm.value] : [this.taskForm.value]
     this.taskAPI[!this.task.id ? 'create' : 'update'](...params).subscribe((data)=> {
+      console.log(data)
       if (!this.task.id) {
         this.onCreateTask.emit(data);
         this.taskForm.reset();
