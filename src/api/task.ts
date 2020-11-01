@@ -6,8 +6,8 @@ import { environment } from '../environments/environment';
 export class Task {
   constructor(private http: HttpClient) {}
 
-  query() {
-    return this.http.get(`${environment.apiEndpoint}/api/v1/tasks`);
+  query(params?) {
+    return this.http.get(`${environment.apiEndpoint}/api/v1/tasks`, { params: params });
   }
 
   create(params?) {
