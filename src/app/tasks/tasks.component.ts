@@ -8,29 +8,50 @@ import { Task } from '../../api';
   styleUrls: ['./tasks.component.scss']
 })
 export class TasksComponent implements OnInit {
-  
-  tasks = [];
-  
+
+  activeTasks: any = [];
+  completedTasks: any = [];
+
+
   constructor(private taskAPI: Task) {
   }
 
   ngOnInit(): void {
-    this.getTasks();
-  }
-  
-  getTasks() {
-    this.taskAPI.query().subscribe(this.onGetTasksSuccess);
+    this.getTasks(true);
+    this.getTasks(false);
   }
 
-  onGetTasksSuccess = (data) => {
-    this.tasks = data;
+  getTasks(active) {
+    this.taskAPI.query({ active: active }).subscribe((data) => {
+      this[this.taskListName(active)] = data;
+    });
   }
 
-  onDeleteTask() {
-    this.tasks.shift();
+  taskListName(active) {
+    const taskList = active ? 'activeTasks' : 'completedTasks';
+    return taskList;
   }
 
-  onCreateTask($event) {
-    this.tasks.unshift($event)
-  } 
+  onDeleteTask(task) {
+    if (task.active === true) {
+      this.activeTasks = this.activeTasks.filter((item) => { return item.id != task.id });
+    } else {
+      this.completedTasks = this.completedTasks.filter((item) => { return item.id != task.id });
+    }
+  }
+
+  onCompleteTask(task) {
+    console.log(task)
+    if (task.active === true) {
+      this.completedTasks = this.completedTasks.filter((item) => { return item.id != task.id });
+      this.activeTasks.unshift(task)
+    } else {
+      this.activeTasks = this.activeTasks.filter((item) => { return item.id != task.id });
+      this.completedTasks.unshift(task)
+    }
+  }
+
+  onCreateTask(task) {
+    this.activeTasks.unshift(task)
+  }
 }
