@@ -8,9 +8,7 @@
       #todoList="cdkDropList"
       [cdkDropListData]="activeTasks"
       [cdkDropListConnectedTo]="[doneList]"
-      (cdkDropListDropped)="onDrop($event)"
-
-      >
+      (cdkDropListDropped)="onDrop($event)">
         <div class="current-tasks-headers">
           <h1>Add Task</h1>
           <h1>|</h1>

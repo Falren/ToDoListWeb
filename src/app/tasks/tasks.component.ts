@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Task } from '../../api';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ToastrService } from 'ngx-toastr';
-import { title } from 'process';
 
 @Component({
   selector: 'app-tasks',
