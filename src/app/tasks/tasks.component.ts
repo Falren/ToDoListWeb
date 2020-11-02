@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../../api';
-
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { ToastrService } from 'ngx-toastr';
+import { title } from 'process';
 
 @Component({
   selector: 'app-tasks',
@@ -12,13 +14,28 @@ export class TasksComponent implements OnInit {
   activeTasks: any = [];
   completedTasks: any = [];
 
-
-  constructor(private taskAPI: Task) {
-  }
+  constructor(private taskAPI: Task, private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.getTasks(true);
     this.getTasks(false);
+  }
+
+  onDrop(event: CdkDragDrop<string[]>) {  
+    let task: any = event.previousContainer.data[event.previousIndex];
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+      } else {
+        this.updateTask(task);
+        transferArrayItem(
+          event.previousContainer.data,
+          event.container.data,
+          event.previousIndex,
+          event.currentIndex);
+        }
   }
 
   getTasks(active) {
@@ -40,15 +57,15 @@ export class TasksComponent implements OnInit {
     }
   }
 
-  onCompleteTask(task) {
-    console.log(task)
-    if (task.active === true) {
-      this.completedTasks = this.completedTasks.filter((item) => { return item.id != task.id });
-      this.activeTasks.unshift(task)
-    } else {
-      this.activeTasks = this.activeTasks.filter((item) => { return item.id != task.id });
-      this.completedTasks.unshift(task)
-    }
+  updateTask(task) {
+    this.taskAPI.update(task.id, {active: !task.active}).subscribe((data) => {
+      Object.assign(task, data);
+      if (task.active === false) {
+        this.toastr.success('Task has been successfully completed', 'Success!', { closeButton: true })
+      } else {
+        this.toastr.success('Task has been successfully undone', 'Success!', { closeButton: true })
+      }
+    })
   }
 
   onCreateTask(task) {

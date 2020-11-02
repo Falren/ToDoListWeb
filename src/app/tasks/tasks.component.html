@@ -3,7 +3,14 @@
   </div>
   <div class="row">
     <div class='col-lg-5'>
-      <div class="container-lg bg-dark">
+      <div class="container-lg bg-dark" 
+      cdkDropList
+      #todoList="cdkDropList"
+      [cdkDropListData]="activeTasks"
+      [cdkDropListConnectedTo]="[doneList]"
+      (cdkDropListDropped)="onDrop($event)"
+
+      >
         <div class="current-tasks-headers">
           <h1>Add Task</h1>
           <h1>|</h1>
@@ -11,16 +18,21 @@
         </div>
         <app-task-form (onCreateTask)="onCreateTask($event);"></app-task-form>
         <hr>
-        <div *ngFor="let task of activeTasks">
-          <app-task [task]="task" (onDeleteTask)="onDeleteTask($event);" (onCompleteTask)="onCompleteTask($event);"></app-task>
+        <div *ngFor="let task of activeTasks" cdkDrag>
+          <app-task [task]="task" (onDeleteTask)="onDeleteTask($event);" (cdkDropListDropped)="onDrop($event)"></app-task>
         </div>  
       </div>
     </div>
     <div class="col-lg-5">
-      <div class="container-lg bg-dark">
+      <div class="container-lg bg-dark"
+        cdkDropList
+        #doneList="cdkDropList"
+        [cdkDropListData]="completedTasks"
+        [cdkDropListConnectedTo]="todoList"
+        (cdkDropListDropped)="onDrop($event)">
         <h1 class="mx-auto" style="width: 350px;">Completed Tasks</h1>
-        <div *ngFor="let task of completedTasks">
-          <app-task [task]="task" (onDeleteTask)="onDeleteTask($event);"  (onCompleteTask)="onCompleteTask($event);"></app-task>
+        <div *ngFor="let task of completedTasks" cdkDrag>
+          <app-task [task]="task" (onDeleteTask)="onDeleteTask($event);"></app-task>
         </div>
       </div>
     </div>

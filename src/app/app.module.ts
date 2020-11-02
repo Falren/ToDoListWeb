@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TasksComponent } from './tasks/tasks.component';
@@ -23,6 +23,7 @@ import { TaskInfoComponent } from './task-info/task-info.component';
     TaskInfoComponent,
   ],
   imports: [
+    DragDropModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
