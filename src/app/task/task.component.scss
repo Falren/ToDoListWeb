@@ -1,0 +1,17 @@
+
+$mine-shaft: #252525;
+.task-card {
+  background-color: $mine-shaft;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 2px;
+  padding: 10px;
+}
+
+p {
+  color: gainsboro;
+  width: 200px;
+}

@@ -1,9 +1,11 @@
-<div> Task id: {{ task.id }} </div>
-<div> Title: {{ task.title }} </div>
-<div> Description: {{ task.description }} </div>
-<div class="btn-group" role="group" aria-label="Basic example">
-  <a class="btn btn-primary btn-lg" href="#" role="button">Edit </a>
-  <a class="btn btn-success btn-lg" href="#" role="button">Mark as done</a>
-  <a class="btn btn-danger btn-lg" (click)="deleteTask(task.id);">Delete</a>
+<div class='task-card'>
+  <div class="task-info">
+    <p> Title: {{ task.title }} </p>
+    <p> Description: {{ task.description }} </p>
+  </div>
+  <div class="btn-group btn-group-sm">
+    <a class="btn btn-secondary btn-sm" [routerLink]="['/tasks', task.id]">Edit </a>
+    <a class="btn btn-danger btn-sm" (click)="deleteTask(task);">Delete</a>
+  </div>
 </div>
 

@@ -1,9 +1,38 @@
-<app-task-form (onCreateTask)="onCreateTask($event)"></app-task-form>
-<div class='col-lg-6'>
-  <h1>TaskMaster</h1>
-  <div class="list-group">
-      <div *ngFor="let task of tasks" class="list-group-item">
-        <app-task [task]="task" (onDeleteTask)="onDeleteTask();"></app-task>
+<div class="container-fluid">
+  <div>
+  </div>
+  <div class="row">
+    <div class='col-lg-5'>
+      <div class="container-lg bg-dark" 
+      [cdkDropListData]="activeTasks"
+      [cdkDropListConnectedTo]="[doneList]"
+      (cdkDropListDropped)="onDrop($event)"
+      #todoList="cdkDropList"
+      cdkDropList>
+        <div class="current-tasks-headers">
+          <h1>Add Task</h1>
+          <h1>|</h1>
+          <h1>Current Tasks</h1>
+        </div>
+        <app-task-form (onCreateTask)="onCreateTask($event);"></app-task-form>
+        <hr>
+        <div cdkDrag *ngFor="let task of activeTasks">
+          <app-task [task]="task" (onDeleteTask)="onDeleteTask($event);" (cdkDropListDropped)="onDrop($event)"></app-task>
+        </div>  
       </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="container-lg bg-dark"
+      [cdkDropListData]="completedTasks"
+      [cdkDropListConnectedTo]="todoList"
+      (cdkDropListDropped)="onDrop($event)"
+      #doneList="cdkDropList"
+      cdkDropList>
+        <h1>Completed Tasks</h1>
+        <div cdkDrag *ngFor="let task of completedTasks">
+          <app-task [task]="task" (onDeleteTask)="onDeleteTask($event);"></app-task>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
