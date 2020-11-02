@@ -10,7 +10,6 @@ import { title } from 'process';
   styleUrls: ['./tasks.component.scss']
 })
 export class TasksComponent implements OnInit {
-
   activeTasks: any = [];
   completedTasks: any = [];
 
