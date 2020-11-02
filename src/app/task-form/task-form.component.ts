@@ -24,7 +24,6 @@ export class TaskFormComponent {
   onSubmit() {
     let params = this.task.id ? [this.task.id, this.taskForm.value] : [this.taskForm.value]
     this.taskAPI[!this.task.id ? 'create' : 'update'](...params).subscribe((data)=> {
-      console.log(data)
       if (!this.task.id) {
         this.onCreateTask.emit(data);
         this.taskForm.reset();

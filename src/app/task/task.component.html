@@ -4,10 +4,8 @@
     <p> Description: {{ task.description }} </p>
   </div>
   <div class="btn-group btn-group-sm">
-    <a class="btn btn-primary btn-sm" [routerLink]="['/tasks', task.id]">Edit </a>
-    <a *ngIf="task.active == false"class="btn btn-warning btn-sm" (click)="updateTask(task.id, !task.active);">Undo</a>
-    <a *ngIf="task.active == true"class="btn btn-success btn-sm" (click)="updateTask(task.id, !task.active);">Finish</a>
-    <a class="btn btn-danger btn-sm" (click)="deleteTask(task.id);">Delete</a>
+    <a class="btn btn-secondary btn-sm" [routerLink]="['/tasks', task.id]">Edit </a>
+    <a class="btn btn-danger btn-sm" (click)="deleteTask(task);">Delete</a>
   </div>
 </div>
 
