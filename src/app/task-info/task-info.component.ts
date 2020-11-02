@@ -20,7 +20,6 @@ export class TaskInfoComponent {
     
   getTask(id) {
     this.taskAPI.get(id).subscribe((data) => {
-      console.log(data)
       this.task = data;
     })
   }
