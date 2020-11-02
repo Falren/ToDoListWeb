@@ -33,7 +33,7 @@ export class TasksComponent implements OnInit {
           event.container.data,
           event.previousIndex,
           event.currentIndex);
-        }
+      }
   }
 
   getTasks(active) {
@@ -48,17 +48,21 @@ export class TasksComponent implements OnInit {
   }
 
   onDeleteTask(task) {
-    if (task.active === true) {
-      this.activeTasks = this.activeTasks.filter((item) => { return item.id != task.id });
+    if (task.active) {
+      this.activeTasks = this.activeTasks.filter((item) => this.deleteTask(item, task));
     } else {
-      this.completedTasks = this.completedTasks.filter((item) => { return item.id != task.id });
+      this.completedTasks = this.completedTasks.filter((item) => this.deleteTask(item, task));
     }
+  }
+
+  deleteTask(item, task) {
+    return item.id != task.id
   }
 
   updateTask(task) {
     this.taskAPI.update(task.id, {active: !task.active}).subscribe((data) => {
       Object.assign(task, data);
-      if (task.active === false) {
+      if (!task.active) {
         this.toastr.success('Task has been successfully completed', 'Success!', { closeButton: true })
       } else {
         this.toastr.success('Task has been successfully undone', 'Success!', { closeButton: true })

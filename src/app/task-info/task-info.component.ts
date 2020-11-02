@@ -8,7 +8,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./task-info.component.scss']
 })
 export class TaskInfoComponent {
-
   @Input() task: any = {};
 
   constructor(private taskAPI: Task, private route: ActivatedRoute){
@@ -19,9 +18,10 @@ export class TaskInfoComponent {
     });
   }
     
-    getTask(id) {
-      this.taskAPI.get(id).subscribe((data) => {
-        this.task = data;
-      })
-    }
+  getTask(id) {
+    this.taskAPI.get(id).subscribe((data) => {
+      console.log(data)
+      this.task = data;
+    })
+  }
 }
