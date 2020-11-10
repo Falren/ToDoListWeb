@@ -10,7 +10,11 @@ $mine-shaft: #252525;
   border-radius: 2px;
   padding: 10px;
 }
-
+@media screen and (max-width: 500px) {
+  .task-card {
+    display: block;
+  }
+}
 p {
   color: gainsboro;
   width: 200px;
