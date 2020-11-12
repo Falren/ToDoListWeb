@@ -1,12 +1,11 @@
 {
   "name": "to-do-list-web",
   "version": "0.0.1",
-  "author": "falren",
-  "description": "task manager",
   "main": "main.js",
   "build": {
-    "appId": "http://localhost:4200/tasks",
-    "files": ["**/*", "build/icon.*"]
+    "linux": {
+      "target": "AppImage"
+    } 
   },
   "scripts": {
     "ng": "ng",
@@ -16,9 +15,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "start:electron": "ng build --base-href ./ && electron .",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder",
-    "postinstall": "electron-builder install-app-deps"
+    "electron-build": "ng build --prod && electron ."
   },
   "private": true,
   "dependencies": {
